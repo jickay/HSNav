@@ -1,0 +1,9 @@
+<template name="grid_cell">
+
+    <div class="course-cell col-md-2">
+        {{#each subjectCourses subject level}}
+        <button class="btn">{{subject}} {{number}}</button>
+        {{/each}}
+    </div>
+
+</template>

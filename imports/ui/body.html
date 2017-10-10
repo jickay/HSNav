@@ -1,0 +1,39 @@
+<body>
+    <div class="container-fluid">
+        <header>
+            <h1>High School Navigator</h1>
+        </header>
+
+        <div class="course-grid col-md-8">
+            {{> grid_header}}
+                {{#each gridSubjects}}
+                    <div class="row-container col-md-12">
+                        {{> grid_row}}
+                    </div>
+                {{/each}}
+
+        </div>
+
+        <div class="sidebar col-md-4">
+
+            {{> loginButtons}}
+
+            {{#if currentUser}}
+                <form class="new-course">
+                    <input type="text" name="subject" placeholder="Course subject..." />
+                    <input type="number" name="number" placeholder="Course number..." />
+                    <input type="text" name="title" placeholder="Course title..." />
+                    <input type="submit" value="Add" class="btn-default" />
+                </form>
+            {{/if}}
+
+            <ul>
+                {{#each courses}}
+                    {{> course}}
+                {{/each}}
+            </ul>
+
+        </div>
+
+    </div>
+</body>
