@@ -4,34 +4,50 @@
             <h1>High School Navigator</h1>
         </header>
 
-        <div class="course-grid col-md-8">
+        <div class="course-grid col-xs-8">
             {{> grid_header}}
+
+            <div class="course-grid-left col-xs-8">
                 {{#each gridSubjects}}
-                    <div class="row-container col-md-12">
+                    <div class="row-container col-xs-12">
                         {{> grid_row}}
                     </div>
                 {{/each}}
+            </div>
 
+            <div class="course-grid-right col-xs-4 col-wrap">
+                <div class="end-goal col-xs-6 col">
+                    Degree
+                </div>
+                <div class="end-goal col-xs-6 col">
+                    University program
+                </div>
+            </div>
         </div>
 
-        <div class="sidebar col-md-4">
+
+        <div class="sidebar col-xs-4">
 
             {{> loginButtons}}
 
+            <div class="sidebar-header">
+                <h3>Add New Course</h3>
+            </div>
             {{#if currentUser}}
-                <form class="new-course">
-                    <input type="text" name="subject" placeholder="Course subject..." />
-                    <input type="number" name="number" placeholder="Course number..." />
-                    <input type="text" name="title" placeholder="Course title..." />
-                    <input type="submit" value="Add" class="btn-default" />
-                </form>
+                {{> course_form}}
             {{/if}}
 
-            <ul>
+            <div class="course-listings">
+                <div class="sidebar-header">
+                    <h3>Course Listings</h3>
+                </div>
                 {{#each courses}}
                     {{> course}}
+                    {{#if editOn}}
+                        {{> edit_course}}
+                    {{/if}}
                 {{/each}}
-            </ul>
+            </div>
 
         </div>
 

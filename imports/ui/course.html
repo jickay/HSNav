@@ -1,7 +1,16 @@
 <template name="course">
-  <li class="{{#if checked}}checked{{/if}}">
-    <button class="delete">&times;</button>
+  <div class="course-listing col-xs-12">
 
-    <span class="text"><strong>{{username}}</strong>  {{subject}},  {{number}}, {{level}}</span>
-  </li>
+    <div class="course-listing-text col-xs-6 nopadding">
+        <span class="text">{{subject}},  {{number}}, {{level}}</span>
+        <span class="text">{{title}}</span>
+        <span class="text">{{achievement}}</span>
+    </div>
+
+    <div class="course-listing-buttons col-xs-6 nopadding">
+        <button class="delete btn">&times;</button>
+        <button class="edit btn">{{#if editOn}}cancel{{else}}edit{{/if}}</button>
+    </div>
+
+    </div>
 </template>

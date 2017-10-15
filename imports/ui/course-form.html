@@ -1,0 +1,13 @@
+<template name="course_form">
+    <form class="course-form">
+        <input type="text" name="subject"  placeholder="Course subject..."/>
+        <input type="number" name="number"  placeholder="Course number..."/>
+        <input type="text" name="title" placeholder="Course title..."/>
+        <label required="required">Achievement Level</label>
+        <select id="achievement" name="achievement">
+            <option value="diploma" selected>Diploma</option>
+            <option value="certificate">Certificate</option>
+        </select>
+        <input type="submit" value="Add" class="btn" />
+    </form>
+</template>

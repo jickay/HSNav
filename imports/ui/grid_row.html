@@ -1,7 +1,9 @@
 <template name="grid_row">
 
-    <div class="row-subject col-md-2">{{this}}</div>
+    <!-- Row header with subject name -->
+    <div class="row-cell col-xs-3">{{this}}</div>
 
+    <!-- Divs for each course level -->
     {{> grid_cell subject=this level=10}}
     {{> grid_cell subject=this level=20}}
     {{> grid_cell subject=this level=30}}

@@ -1,9 +1,15 @@
 /* CSS declarations go here */
+html, body {
+    height: 100%;
+}
+
 body {
   font-family: sans-serif;
   background-color: #315481;
   background-image: linear-gradient(to bottom, #315481, #918e82 100%);
   background-attachment: fixed;
+
+  min-height: 100%;
 
   position: absolute;
   top: 0;
@@ -17,28 +23,6 @@ body {
   font-size: 14px;
 }
 
-.container-fluid {
-  min-width: 720px;
-  max-width: 1980px;
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-  background: white;
-}
-
-.sidebar {
-    padding: 15px;
-}
-
-.course-grid {
-    margin: 0;
-    padding: 15px;
-}
-
-.row-container {
-    padding: 15px 0px 15px 0px;
-}
-
 header {
   background: #d2edf4;
   background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
@@ -50,6 +34,7 @@ header {
   display: block;
 }
 
+/*General tags*/
 h1 {
   font-size: 1.5em;
   margin: 0;
@@ -58,73 +43,117 @@ h1 {
   margin-right: 1em;
 }
 
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+/*****CONTAINERS*****/
+.container-fluid {
+  min-width: 720px;
+  max-width: 1980px;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: white;
+}
+
+/*Side containers*/
+.sidebar {
+    padding: 15px;
+}
+
+.sidebar-header {
+    text-align: center;
+}
+
+.course-listings {
+    padding-top: 15px;
+}
+
+.course-listing {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #ccdfff;
+}
+
+.edit-course {
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
 form {
   margin-top: 10px;
   margin-bottom: -10px;
   position: relative;
 }
 
-.new-course input {
+select {
+    box-sizing: border-box;
+    background: transparent;
+    margin-bottom: 10px;
+    width: 100%;
+    font-size: 1em;
+}
+
+input[type=text], input[type=number]{
   box-sizing: border-box;
   padding: 10px 0;
   background: transparent;
   border: none;
   width: 100%;
-  padding-right: 80px;
   font-size: 1em;
 }
 
-.new-course input:focus{
+input:focus{
   outline: 0;
 }
 
-ul {
-  margin: 0;
-  padding: 0;
-  background: white;
+input[type=submit] {
+    margin-bottom: 10px;
 }
 
 .delete {
   float: right;
-  font-weight: bold;
-  background: none;
-  font-size: 2em;
-  border: none;
   position: relative;
+  margin-left: 2px;
 }
 
-li {
-  position: relative;
-  list-style: none;
-  padding: 15px;
-  border-bottom: #eee solid 1px;
-}
-
-li.text {
-  margin-left: 10px;
-}
-
-li.checked {
-  color: red;
-}
-
-li.checked .text {
-  text-decoration: line-through;
-}
-
-li.private {
-  background: #eee;
-  border-color: #ddd;
-}
-
-header .hide-completed {
+.edit {
   float: right;
+  position: relative;
 }
 
-.toggle-private {
-  margin-left: 5px;
+/*Grid containers*/
+.course-grid {
+    height: 100%;
 }
 
+.course-grid-left {
+    margin: 0;
+    padding: 0;
+}
+
+.course-grid-right {
+    margin: 0;
+    padding: 0;
+}
+
+.end-goal {
+    vertical-align: middle;
+}
+
+.row-container {
+    padding: 15px 0px 15px 0px;
+}
+
+.row-cell {
+    padding: 0px 10px 0px 10px;
+}
+
+/*Responsive stuff*/
 @media (max-width: 600px) {
   li {
     padding: 12px 15px;
