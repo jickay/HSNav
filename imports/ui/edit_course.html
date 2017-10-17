@@ -6,10 +6,12 @@
             <input type="text" name="title" value="{{title}}" placeholder="{{#if title=""}}Course title...{{/if}}"/>
             <label required="required">Achievement Level</label>
             <select id="achievement" name="achievement" value="{{achievement}}">
-                {{#if isDiploma achievement}}<option value="diploma" selected>Diploma</option>
-                {{else}}<option value="diploma">Diploma</option>{{/if}}
-                {{#if isCert achievement}}<option value="certificate" selected>Certificate</option>
-                {{else}}<option value="certificate">Certificate</option>{{/if}}
+                {{#if isNone achievement}}<option value="None" selected>None</option>
+                {{else}}<option value="None">None</option>{{/if}}
+                {{#if isDiploma achievement}}<option value="Diploma" selected>Diploma</option>
+                {{else}}<option value="Diploma">Diploma</option>{{/if}}
+                {{#if isCert achievement}}<option value="Certificate" selected>Certificate</option>
+                {{else}}<option value="Certificate">Certificate</option>{{/if}}
             </select>
             <input type="submit" value="Save edit" class="btn" />
         </form>

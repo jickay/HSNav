@@ -5,12 +5,15 @@ import './edit_course.html';
 import './course-form.html';
 
 Template.edit_course.helpers({
+    isNone(achievement) {
+        if (achievement == "None") { return true; }
+    },
     isDiploma(achievement) {
         if (achievement == "diploma") { return true; }
     },
     isCert(achievement) {
         if (achievement == "certificate") { return true; }
-    }
+    },
 });
 
 Template.edit_course.events({

@@ -68,7 +68,9 @@ h1 {
 }
 
 .course-listings {
+    height: 700px;
     padding-top: 15px;
+    overflow-y: scroll;
 }
 
 .course-listing {
@@ -151,6 +153,15 @@ input[type=submit] {
 
 .row-cell {
     padding: 0px 10px 0px 10px;
+}
+
+/*Buttons*/
+.diploma-on, #Diploma-btn:hover{
+    background-color: pink;
+}
+
+.certificate-on, #Certificate-btn:hover{
+    background-color: orange;
 }
 
 /*Responsive stuff*/

@@ -2,7 +2,9 @@
 
     <div class="row-cell col-xs-3">
         {{#each subjectCourses subject level}}
-        <button class="btn">{{subject}} {{number}}</button>
+        <button class="{{highlight}} btn">
+            {{title}}
+        </button>
         {{/each}}
     </div>
 

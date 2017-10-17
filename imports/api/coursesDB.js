@@ -16,6 +16,7 @@ Meteor.methods({
         check(number, Number);
         check(level, Number);
         check(title, String);
+        check(achievement, String);
 
         if (!Meteor.userId()) {
             throw new Meteor.Error('not-authorized');
@@ -31,6 +32,7 @@ Meteor.methods({
             owner: Meteor.userId(),
             username: Meteor.user().username,
             editOn: false,
+            highlight: "no-highlight",
         })
     },
     'courses.remove'(courseId) {
@@ -65,5 +67,8 @@ Meteor.methods({
                 editOn: editOn,
             }
         });
-    }
+    },
+    'courses.highlight'(courseId, type) {
+        Courses.update(courseId, { $set: {highlight: type} });
+    },
 });
