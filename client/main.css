@@ -156,6 +156,14 @@ input[type=submit] {
 }
 
 /*Buttons*/
+.course-btn {
+    width: 100%;
+}
+
+.achievement-btn {
+    width: 100%;
+}
+
 .diploma-on, #Diploma-btn:hover{
     background-color: pink;
 }

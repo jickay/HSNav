@@ -23,11 +23,7 @@ Template.body.onCreated( function bodyOnCreated() {
 
 Template.body.helpers({
   courses() {
-      const instance = Template.instance();
-      if (instance.state.get('hideCompleted')) {
-          return Courses.find({}, { sort: { subject: 1, number: 1, title: 1, editOn: 1} });
-      }
-      return Courses.find({}, { sort: {subject: 1, number: 1} });
+      return Courses.find({}, { sort: {subject: 1, number: 1, title: 1} });
   },
   gridSubjects() {
       return getDistinct("subject");
@@ -54,7 +50,7 @@ Template.body.events({
             Meteor.call('courses.highlight', x._id, "certificate-on");
         });
     },
-    'mouseleave .achivement-btn'(event) {
+    'mouseleave .achievement-btn'(event) {
         var toHighlight = Courses.find({});
         toHighlight.forEach( function(x) {
             Meteor.call('courses.highlight', x._id, "no-highlight");

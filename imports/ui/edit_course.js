@@ -2,17 +2,16 @@ import { Template } from 'meteor/templating';
 import { Courses } from '../api/coursesDB.js';
 
 import './edit_course.html';
-import './course-form.html';
 
 Template.edit_course.helpers({
     isNone(achievement) {
         if (achievement == "None") { return true; }
     },
     isDiploma(achievement) {
-        if (achievement == "diploma") { return true; }
+        if (achievement == "Diploma") { return true; }
     },
     isCert(achievement) {
-        if (achievement == "certificate") { return true; }
+        if (achievement == "Certificate") { return true; }
     },
 });
 
