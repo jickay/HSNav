@@ -4,7 +4,8 @@
     <div class="course-listing-text col-xs-6 nopadding">
         <span class="text">{{subject}},  {{number}}, {{level}}</span>
         <span class="text">{{title}}</span>
-        <span class="text">{{achievement}}</span>
+        <!-- <span class="text">{{achievement}}</span> -->
+        <span class="text">{{#each achievement}}{{this}} {{/each}}</span>
     </div>
 
     <div class="course-listing-buttons col-xs-6 nopadding">

@@ -1,17 +1,22 @@
 <template name="edit_course">
     <div class="edit-course col-xs-12">
-        <form class="course-form">
+        <form class="course-form" id="edit-course-form">
             <input type="text" name="subject" value="{{subject}}" placeholder="{{#if subject=""}}Course subject...{{/if}}"/>
             <input type="number" name="number" value="{{number}}" placeholder="{{#if number=""}}Course number...{{/if}}"/>
             <input type="text" name="title" value="{{title}}" placeholder="{{#if title=""}}Course title...{{/if}}"/>
-            <label required="required">Achievement Level</label>
-            <select id="achievement" name="achievement" value="{{achievement}}">
+            <textarea rows="5" name="description" form="edit-course-form">{{description}}</textarea>
+
+            <!-- <select id="achievement" name="achievement" value="{{achievement}}">
                 <option value="None" selected>None</option>
                 {{#if isDiploma achievement}}<option value="Diploma" selected>Diploma</option>
                 {{else}}<option value="Diploma">Diploma</option>{{/if}}
                 {{#if isCert achievement}}<option value="Certificate" selected>Certificate</option>
                 {{else}}<option value="Certificate">Certificate</option>{{/if}}
-            </select>
+            </select> -->
+            <div class="checkbox">
+                <label class="check"><input type="checkbox" name="diploma" value="Diploma">Diploma</label>
+                <label class="check"><input type="checkbox" name="certificate" value="Certificate">Certificate</label>
+            </div>
             <input type="submit" value="Save edit" class="btn" />
         </form>
     </div>

@@ -4,30 +4,41 @@
             <h1>High School Navigator</h1>
         </header>
 
-        <div class="course-grid col-xs-8">
-            {{> grid_header}}
+        <!-- Container Left Side -->
+        <div class="container-left col-xs-8">
 
-            <div class="course-grid-left col-xs-8">
-                {{#each gridSubjects}}
-                    <div class="row-container col-xs-12">
-                        {{> grid_row}}
-                    </div>
-                {{/each}}
-            </div>
+            <!-- Course Grid -->
+            <div class="course-grid col-xs-12">
+                {{> grid_header}}
 
-            <div class="course-grid-right col-xs-4 col-wrap">
-                <div class="end-goal col-xs-6 col">
-                    {{#each achievementLevel}}
-                        <button class="achievement-btn btn" id="{{this}}-btn">{{this}}</button>
+                <div class="course-grid-left col-xs-8">
+                    {{#each gridSubjects}}
+                        <div class="row-container col-xs-12">
+                            {{> grid_row}}
+                        </div>
                     {{/each}}
                 </div>
-                <div class="end-goal col-xs-6 col">
-                    University program
+
+                <div class="course-grid-right col-xs-4 col-wrap">
+                    <div class="end-goal col-xs-6 col">
+                        {{#each achievementLevel}}
+                            <button class="achievement-btn btn" id="{{this}}-btn">{{this}}</button>
+                        {{/each}}
+                    </div>
+                    <div class="end-goal col-xs-6 col">
+                        University program
+                    </div>
                 </div>
             </div>
+
+            <div class="course-info col-xs-12">
+                <p id="course-name">Course: </p>
+                <p id="course-description">Description: </p>
+            </div>
+
         </div>
 
-
+        <!-- Sidebar -->
         <div class="sidebar col-xs-4">
 
             {{> loginButtons}}

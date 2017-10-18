@@ -11,12 +11,13 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-    'courses.insert'(subject, number, level, title, achievement) {
+    'courses.insert'(subject, number, level, title, description, achievement) {
         check(subject, String);
         check(number, Number);
         check(level, Number);
         check(title, String);
-        check(achievement, String);
+        check(description, String);
+        check(achievement, [String]);
 
         if (!Meteor.userId()) {
             throw new Meteor.Error('not-authorized');
@@ -27,6 +28,7 @@ Meteor.methods({
             number,
             level,
             title,
+            description,
             achievement,
             createdAt: new Date(),
             owner: Meteor.userId(),
@@ -43,12 +45,12 @@ Meteor.methods({
     'courses.edit'(courseId, editOn) {
         Courses.update(courseId, { $set: {editOn: !editOn} });
     },
-    'courses.update'(courseId, subject, number, level, title, achievement, editOn) {
+    'courses.update'(courseId, subject, number, level, title, description, achievement, editOn) {
         check(subject, String);
         check(number, Number);
         check(level, Number);
         check(title, String);
-        check(achievement, String);
+        check(achievement, [String]);
 
         if (!Meteor.userId()) {
             throw new Meteor.Error('not-authorized');
@@ -60,6 +62,7 @@ Meteor.methods({
                 number: number,
                 level: level,
                 title: title,
+                description: description,
                 achievement: achievement,
                 createdAt: new Date(),
                 owner: Meteor.userId(),
