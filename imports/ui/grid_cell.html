@@ -2,9 +2,10 @@
 
     <div class="row-cell col-xs-3">
         {{#each subjectCourses subject level}}
-        <button class="course-btn {{highlight}} btn">
-            {{title}}
-        </button>
+        <div class="course-btn-group btn-group" role="group" aria-label="course-btns">
+            <button type="button" class="course-btn {{#if check}}checked{{/if}} {{highlight}} btn secondary-btn">{{title}}</button>
+            <button type="button" class="course-check-btn {{#if check}}checked{{/if}} {{highlight}} btn secondary-btn">&#x2714;</button>
+        </div>
         {{/each}}
     </div>
 

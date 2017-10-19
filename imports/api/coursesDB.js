@@ -33,6 +33,7 @@ Meteor.methods({
             createdAt: new Date(),
             owner: Meteor.userId(),
             username: Meteor.user().username,
+            check: false,
             editOn: false,
             highlight: "no-highlight",
         })
@@ -45,12 +46,14 @@ Meteor.methods({
     'courses.edit'(courseId, editOn) {
         Courses.update(courseId, { $set: {editOn: !editOn} });
     },
-    'courses.update'(courseId, subject, number, level, title, description, achievement, editOn) {
+    'courses.update'(courseId, subject, number, level, title, description,
+                    achievement, editOn) {
         check(subject, String);
         check(number, Number);
         check(level, Number);
         check(title, String);
         check(achievement, [String]);
+        check(checked, Boolean);
 
         if (!Meteor.userId()) {
             throw new Meteor.Error('not-authorized');
@@ -73,5 +76,8 @@ Meteor.methods({
     },
     'courses.highlight'(courseId, type) {
         Courses.update(courseId, { $set: {highlight: type} });
+    },
+    'courses.check'(courseId, check) {
+        Courses.update(courseId, { $set: {check: !check} });
     },
 });

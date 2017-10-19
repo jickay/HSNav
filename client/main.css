@@ -178,15 +178,25 @@ input[type=submit] {
 }
 
 /*Buttons*/
-.course-btn {
+.btn-group {
+    margin: 2px;
     width: 100%;
+}
+
+.course-check-btn {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.checked, .course-check-btn:hover {
+    background-color: #c2ffaa;
 }
 
 .achievement-btn {
     width: 100%;
 }
 
-.diploma-on{
+.diploma-on, #Diploma-btn:hover{
     background-color: pink;
 }
 

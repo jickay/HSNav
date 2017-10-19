@@ -1,7 +1,7 @@
 import { Template } from 'meteor/templating';
 import { Courses } from '../api/coursesDB.js';
 
-import './course.html';
+import './course-listing.html';
 
 Template.course.events({
   'click .edit'() {

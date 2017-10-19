@@ -38,6 +38,7 @@ Template.edit_course.events({
         else if (number < 30) { level = 20; }
         else if (number < 40) { level = 30; }
 
-        Meteor.call('courses.update', this._id, subject, number, level, title, description, achievements, !this.editOn);
+        Meteor.call('courses.update', this._id, subject, number, level, title, description,
+                                                achievements, !this.editOn);
     }
 });

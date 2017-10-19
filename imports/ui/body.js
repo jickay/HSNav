@@ -3,8 +3,8 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Courses } from '../api/coursesDB.js';
 
-import './course.html';
-import './course.js';
+import './course-listing.html';
+import './course-listing.js';
 import './body.html';
 import './grid_header.html';
 import './grid_row.html';
@@ -60,11 +60,15 @@ Template.grid_cell.helpers({
 });
 
 Template.grid_cell.events({
-    'mouseenter .course-btn'(event) {
+    'mouseenter .course-btn-group'(event) {
         showCourseInfo(this.title, this.description);
     },
-    'mouseleave .course-btn'(event) {
+    'mouseleave .course-btn-group'(event) {
         showCourseInfo("<Mouse over a course>", "<Mouse over a course>");
+    },
+    'click .course-check-btn'(event) {
+        Meteor.call('courses.check', this._id, this.check);
+        event.target.blur();
     }
 });
 
