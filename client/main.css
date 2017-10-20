@@ -45,7 +45,10 @@ h1 {
 
 .nopadding {
    padding: 0 !important;
-   margin: 0 !important;
+}
+
+.nomargin {
+    margin: 0 !important;
 }
 
 /*****CONTAINERS*****/
@@ -73,21 +76,22 @@ h1 {
 }
 
 /*Side containers*/
-.sidebar {
+.admin, .admin-add-course {
     padding: 0px;
 }
 
-.sidebar-header {
+.admin-header {
     text-align: center;
 }
 
 .course-listings {
-    height: 600px;
+    height: 800px;
     padding-top: 15px;
     overflow-y: scroll;
 }
 
 .course-listing {
+    width: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
     background-color: #ccdfff;
@@ -178,12 +182,20 @@ input[type=submit] {
 }
 
 /*Buttons*/
+.course-btn-group {
+    margin-bottom: 5px;
+}
+
 .btn-group {
-    margin: 2px;
-    width: 100%;
+    margin-left: 0 !important;
+}
+
+.course-btn {
+    width: 80%;
 }
 
 .course-check-btn {
+    width: 20%;
     padding-left: 4px;
     padding-right: 4px;
 }

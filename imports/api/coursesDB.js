@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
+import { Accounts } from 'meteor/accounts-base';
 
 export const Courses = new Mongo.Collection('courses');
 
@@ -8,9 +9,15 @@ if (Meteor.isServer) {
     Meteor.publish('courses', function coursesPub() {
         return Courses.find();
     });
+    Meteor.publish('users', function usersPub() {
+        return Meteor.users.find();
+    });
 }
 
 Meteor.methods({
+    'users.setAdmin'(userId) {
+        Accounts.users.update(userId, { $set: {admin: true} });
+    },
     'courses.insert'(subject, number, level, title, description, achievement) {
         check(subject, String);
         check(number, Number);
@@ -53,7 +60,6 @@ Meteor.methods({
         check(level, Number);
         check(title, String);
         check(achievement, [String]);
-        check(checked, Boolean);
 
         if (!Meteor.userId()) {
             throw new Meteor.Error('not-authorized');

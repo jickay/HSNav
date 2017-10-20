@@ -1,18 +1,21 @@
+import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Courses } from '../api/coursesDB.js';
 
 import './edit_course.html';
 
 Template.edit_course.helpers({
-    isNone(achievement) {
-        if (achievement == "None") { return true; }
+    isCert() {
+        console.log(this.achievement);
+        for (var i=0; i<this.achievement.length; i++) {
+            if (this.achievement[i] == "Certificate") { return true; }
+        }
     },
-    isDiploma(achievement) {
-        if (achievement == "Diploma") { return true; }
-    },
-    isCert(achievement) {
-        if (achievement == "Certificate") { return true; }
-    },
+    isDiploma() {
+        for (var i=0; i<this.achievement.length; i++) {
+            if (this.achievement[i] == "Diploma") { return true; }
+        }
+    }
 });
 
 Template.edit_course.events({

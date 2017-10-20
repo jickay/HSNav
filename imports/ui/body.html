@@ -2,67 +2,22 @@
     <div class="container-fluid">
         <header>
             <h1>High School Navigator</h1>
+            <div class="login">{{> loginButtons}}</div>
+            {{#if currentUser.admin}}<button class="admin-btn btn">Admin</button>{{/if}}
         </header>
 
-        <!-- Container Left Side -->
-        <div class="container-left col-xs-8">
-
-            <!-- Course Grid -->
-            <div class="course-grid col-xs-12">
-                {{> grid_header}}
-
-                <div class="course-grid-left col-xs-8">
-                    {{#each gridSubjects}}
-                        <div class="row-container col-xs-12">
-                            {{> grid_row}}
-                        </div>
-                    {{/each}}
-                </div>
-
-                <div class="course-grid-right col-xs-4 col-wrap">
-                    <div class="end-goal col-xs-6 col">
-                        {{#each achievementLevel}}
-                            <button class="achievement-btn btn" id="{{this}}-btn">{{this}}</button>
-                        {{/each}}
-                    </div>
-                    <div class="end-goal col-xs-6 col">
-                        University program
-                    </div>
-                </div>
+        {{#if adminModeOn}}
+            <div class="col-xs-12">
+                <p>Users: </p>
+                {{> users}}
+                {{> admin}}
             </div>
+        {{/if}}
 
-            <div class="course-info col-xs-12">
-                <p id="course-name">Course: </p>
-                <p id="course-description">Description: </p>
-            </div>
+        {{#unless adminModeOn}}
+            {{> grid_main}}
+        {{/unless}}
 
-        </div>
-
-        <!-- Sidebar -->
-        <div class="sidebar col-xs-4">
-
-            {{> loginButtons}}
-
-            <div class="sidebar-header">
-                <h3>Add New Course</h3>
-            </div>
-            {{#if currentUser}}
-                {{> course_form}}
-            {{/if}}
-
-            <div class="course-listings">
-                <div class="sidebar-header">
-                    <h3>Course Listings</h3>
-                </div>
-                {{#each courses}}
-                    {{> course}}
-                    {{#if editOn}}
-                        {{> edit_course}}
-                    {{/if}}
-                {{/each}}
-            </div>
-
-        </div>
 
     </div>
 </body>

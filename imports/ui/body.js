@@ -1,109 +1,42 @@
 import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Courses } from '../api/coursesDB.js';
+import { Session } from 'meteor/session';
 
-import './course-listing.html';
-import './course-listing.js';
 import './body.html';
-import './grid_header.html';
-import './grid_row.html';
-import './grid_cell.html';
-import './edit_course.html';
-import './edit_course.js';
-import './course-form.html';
-import './course-form.js';
+import './grid_main.html';
+import './grid_main.js';
 
-var ACHIVEMENTS = ["Diploma", "Certificate"];
-var GREY = 'rgb(230, 230, 230)';
-var PINK = 'rgb(255, 192, 203)';
-var ORANGE = 'rgb(255, 165, 0)';
+import './admin.html';
+import './admin.js';
+
+import './users.html';
+import './users.js';
 
 Template.body.onCreated( function bodyOnCreated() {
-    this.state = new ReactiveDict();
-    Meteor.subscribe('courses');
+    Meteor.subscribe('users');
+    Session.setDefault("adminMode", false);
 });
 
 Template.body.helpers({
-  courses() {
-      return Courses.find({}, { sort: {subject: 1, number: 1, title: 1} });
-  },
-  gridSubjects() {
-      return getDistinct("subject");
-  },
-  achievementLevel() {
-      return ACHIVEMENTS;
-  },
+    adminModeOn() {
+        return Session.get("adminMode");
+    }
 });
 
 Template.body.events({
-    'click #Diploma-btn'(event) {
-        // toggleCourseHighlight(event.target.innerHTML, "diploma-on");
-        toggleHighlight('#Diploma-btn', PINK, event.target.innerHTML, "diploma-on");
-    },
-    'click #Certificate-btn'(event) {
-        // toggleCourseHighlight(event.target.innerHTML, "certificate-on");
-        toggleHighlight('#Certificate-btn', ORANGE, event.target.innerHTML, "certificate-on");
-    },
-    // 'mouseleave .achievement-btn'(event) {
-    //     var toHighlight = Courses.find({});
-    //     toHighlight.forEach( function(x) {
-    //         Meteor.call('courses.highlight', x._id, "no-highlight");
-    //     });
-    // }
-});
-
-Template.grid_cell.helpers({
-    subjectCourses(currentSubject, currentLevel) {
-        return Courses.find( { subject: currentSubject, level: currentLevel }  );
-    },
-});
-
-Template.grid_cell.events({
-    'mouseenter .course-btn-group'(event) {
-        showCourseInfo(this.title, this.description);
-    },
-    'mouseleave .course-btn-group'(event) {
-        showCourseInfo("<Mouse over a course>", "<Mouse over a course>");
-    },
-    'click .course-check-btn'(event) {
-        Meteor.call('courses.check', this._id, this.check);
-        event.target.blur();
+    'click .admin-btn'() {
+        Session.set("adminMode", !Session.get("adminMode"));
     }
 });
 
-function getDistinct(keyword) {
-    return _.uniq(_.pluck(Courses.find({}, { sort: {subject:1} }).fetch(), keyword));
-}
 
-function toggleHighlight(id, highlightColor, type, value) {
-    var match = highlightColor;
-    var color = $(id).css('background-color');
-    if (color == match) {
-        clearHighlights();
-    } else {
-        clearHighlights();
-        $(id).css('background-color', match);
-        toggleCourseHighlight(type, value);
-    }
-}
-
-function toggleCourseHighlight(type, value) {
-    var toHighlight = Courses.find({ achievement: type });
-    toHighlight.forEach( function(x) {
-        Meteor.call('courses.highlight', x._id, value);
-    });
-}
-
-function clearHighlights() {
-    $('.achievement-btn').css('background-color', GREY);
-    var allCourses = Courses.find({})
-    allCourses.forEach( function(x) {
-        Meteor.call('courses.highlight', x._id, "no-highlight");
-    });
-}
-
-function showCourseInfo(name, description) {
-    $('#course-name').text("Course: " + name);
-    $('#course-description').text("Description: " + description);
-}
+// Accounts.Meteor.onCreateUser(function(options, user) {
+//     // if (user.username == "jickay") {
+//     //     Meteor.users.update(user.userId, { $set: {admin: true} });
+//     //     console.log(user.admin);
+//     // }
+//     return user
+// });

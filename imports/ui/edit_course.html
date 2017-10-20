@@ -14,8 +14,8 @@
                 {{else}}<option value="Certificate">Certificate</option>{{/if}}
             </select> -->
             <div class="checkbox">
-                <label class="check"><input type="checkbox" name="diploma" value="Diploma">Diploma</label>
-                <label class="check"><input type="checkbox" name="certificate" value="Certificate">Certificate</label>
+                <label class="check"><input type="checkbox" checked="{{#if isDiploma}}checked{{/if}}" name="diploma" value="Diploma">Diploma</label>
+                <label class="check"><input type="checkbox" checked="{{#if isCert}}checked{{/if}}" name="certificate" value="Certificate">Certificate</label>
             </div>
             <input type="submit" value="Save edit" class="btn" />
         </form>
