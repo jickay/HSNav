@@ -1,0 +1,42 @@
+<template name="admin">
+    <!-- Sidebar -->
+    <div class="admin-container col-xs-12">
+
+        <ul class="admin-tabs nav nav-tabs">
+            <li class="courses-tab {{#if onCourses}}active{{/if}}"><a href="#">Add/Edit Courses</a></li>
+            <li class="users-tab {{#if onUsers}}active{{/if}}"><a href="#">Users</a></li>
+            <li class="postsec-tab {{#if onPostSec}}active{{/if}}"><a href="#">Post Secondary</a></li>
+            <!--<li>Menu 3</li>-->
+        </ul>
+
+        {{#if onUsers}}
+            {{> users}}
+        {{/if}}
+
+        {{#if onPostSec}}
+            {{> post_secondary}}
+        {{/if}}
+
+        {{#if onCourses}}
+            <div class="admin-add-course col-xs-5">
+                <h3 class="admin-header">Add New Course</h3>
+                {{#if currentUser}}
+                    {{> course_form}}
+                {{/if}}
+            </div>
+
+            <div class="course-listings col-xs-7">
+                <div class="admin-header">
+                    <h3>Course Listings</h3>
+                </div>
+                {{#each getCourses}}
+                    {{> course_listing}}
+                    {{#if editOn}}
+                        {{> edit_course}}
+                    {{/if}}
+                {{/each}}
+            </div>
+        {{/if}}
+
+    </div>
+</template>

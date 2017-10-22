@@ -10,6 +10,6 @@ Template.users.onCreated( function bodyOnCreated() {
 
 Template.users.helpers({
     getUsers() {
-        return Accounts.users.find({username:"jickay"});
+        return Meteor.users.find();
     }
 });

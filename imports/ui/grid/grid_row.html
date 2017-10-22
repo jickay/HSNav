@@ -1,0 +1,15 @@
+<template name="grid_row">
+    <div class="row-container {{#if evenRow index}}row-highlight{{/if}} col-xs-12">
+        <!-- Row header with subject name -->
+        <div class="row-header-wrapper col-xs-3"> </div>
+        <div class="row-header">{{subject}}</div>
+
+
+        <!-- Divs for each course level -->
+        {{> grid_cell subject=subject level=10}}
+        {{> grid_cell subject=subject level=20}}
+        {{> grid_cell subject=subject level=30}}
+
+    </div>
+
+</template>

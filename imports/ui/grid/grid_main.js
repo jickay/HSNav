@@ -1,7 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
-import { Courses } from '../api/coursesDB.js';
+import { Courses } from '../../api/coursesDB.js';
+import { Session } from 'meteor/session';
 
 import './grid_main.html';
 import './grid_header.html';
@@ -16,25 +17,38 @@ var ORANGE = 'rgb(255, 165, 0)';
 Template.grid_main.onCreated( function bodyOnCreated() {
     this.state = new ReactiveDict();
     Meteor.subscribe('courses');
+    Session.set("diplomaOn", false);
+    Session.set("certOn", false);
 });
 
 Template.grid_main.helpers({
-  gridSubjects() {
-      return getDistinct("subject");
-  },
-  achievementLevel() {
-      return ACHIVEMENTS;
-  },
+    gridSubjects() {
+        console.log(getDistinct("subject"));
+        return getDistinct("subject");
+    },
+    achievementLevel() {
+        return ACHIVEMENTS;
+    },
+    diplomaOn() {
+      if (Session.get("diplomaOn")) { return true; }
+    },
+    certOn() {
+        if (Session.get("certOn")) { return true; }
+    }
 });
 
 Template.grid_main.events({
     'click #Diploma-btn'(event) {
-        // toggleCourseHighlight(event.target.innerHTML, "diploma-on");
-        toggleHighlight('#Diploma-btn', PINK, event.target.innerHTML, "diploma-on");
+        Session.set("diplomaOn", !Session.get("diplomaOn"));
+        var dipOn = Session.get("diplomaOn");
+        if (dipOn) { Session.set("certOn", false); }
+        toggleHighlight(dipOn, event.target.innerHTML, "diploma-on");
     },
     'click #Certificate-btn'(event) {
-        // toggleCourseHighlight(event.target.innerHTML, "certificate-on");
-        toggleHighlight('#Certificate-btn', ORANGE, event.target.innerHTML, "certificate-on");
+        Session.set("certOn", !Session.get("certOn"));
+        var certOn = Session.get("certOn");
+        if (certOn) { Session.set("diplomaOn", false); }
+        toggleHighlight(certOn, event.target.innerHTML, "certificate-on");
     },
     // 'mouseleave .achievement-btn'(event) {
     //     var toHighlight = Courses.find({});
@@ -43,6 +57,13 @@ Template.grid_main.events({
     //     });
     // }
 });
+
+Template.grid_row.helpers({
+    evenRow(index) {
+        if (index %2 === 0) { return true; }
+    }
+});
+
 
 Template.grid_cell.helpers({
     subjectCourses(currentSubject, currentLevel) {
@@ -67,15 +88,12 @@ function getDistinct(keyword) {
     return _.uniq(_.pluck(Courses.find({}, { sort: {subject:1} }).fetch(), keyword));
 }
 
-function toggleHighlight(id, highlightColor, type, value) {
-    var match = highlightColor;
-    var color = $(id).css('background-color');
-    if (color == match) {
+function toggleHighlight(checkOn, type, value) {
+    if (checkOn) {
         clearHighlights();
+        toggleCourseHighlight(type, value);
     } else {
         clearHighlights();
-        $(id).css('background-color', match);
-        toggleCourseHighlight(type, value);
     }
 }
 

@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { Courses } from '../api/coursesDB.js';
+import { Courses } from '../../api/coursesDB.js';
 
 import './course-form.html';
 

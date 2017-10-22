@@ -15,9 +15,11 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
+    // Users
     'users.setAdmin'(userId) {
         Accounts.users.update(userId, { $set: {admin: true} });
     },
+    // Secondary Courses
     'courses.insert'(subject, number, level, title, description, achievement) {
         check(subject, String);
         check(number, Number);

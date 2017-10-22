@@ -1,19 +1,14 @@
 import { Meteor } from 'meteor/meteor';
-import { Accounts } from 'meteor/accounts-base';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
-import { Courses } from '../api/coursesDB.js';
 import { Session } from 'meteor/session';
 
 import './body.html';
-import './grid_main.html';
-import './grid_main.js';
+import './grid/grid_main.html';
+import './grid/grid_main.js';
 
-import './admin.html';
-import './admin.js';
-
-import './users.html';
-import './users.js';
+import './admin/admin.html';
+import './admin/admin.js';
 
 Template.body.onCreated( function bodyOnCreated() {
     Meteor.subscribe('users');
@@ -21,14 +16,18 @@ Template.body.onCreated( function bodyOnCreated() {
 });
 
 Template.body.helpers({
+    checkAdmin() {
+        if (Meteor.user().admin) { return true; }
+    },
     adminModeOn() {
         return Session.get("adminMode");
     }
 });
 
 Template.body.events({
-    'click .admin-btn'() {
+    'click .admin-btn'(event) {
         Session.set("adminMode", !Session.get("adminMode"));
+        event.target.blur();
     }
 });
 

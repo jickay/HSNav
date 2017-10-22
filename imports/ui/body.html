@@ -3,15 +3,15 @@
         <header>
             <h1>High School Navigator</h1>
             <div class="login">{{> loginButtons}}</div>
-            {{#if currentUser.admin}}<button class="admin-btn btn">Admin</button>{{/if}}
+            <div class="admin-header-btn">
+                {{#if checkAdmin}}
+                    <button class="admin-btn btn {{#if adminModeOn}}admin-btn-on{{/if}}">Admin</button>
+                {{/if}}
+            </div>
         </header>
 
         {{#if adminModeOn}}
-            <div class="col-xs-12">
-                <p>Users: </p>
-                {{> users}}
-                {{> admin}}
-            </div>
+            {{> admin}}
         {{/if}}
 
         {{#unless adminModeOn}}

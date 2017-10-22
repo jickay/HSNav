@@ -2,10 +2,11 @@
   <div class="course-listing col-xs-12">
 
     <div class="course-listing-text col-xs-6 nopadding">
-        <span class="text">{{subject}},  {{number}}, {{level}}</span>
-        <span class="text">{{title}}</span>
-        <!-- <span class="text">{{achievement}}</span> -->
-        <span class="text">{{#each achievement}}{{this}} {{/each}}</span>
+        <p class="course-listing-text"><strong>Title:</strong> {{title}}</p>
+        <p class="course-listing-text">
+            <strong>Subject:</strong> {{subject}}, <strong>Number:</strong> {{number}}, <strong>Level:</strong> {{level}}
+        </p>
+        <p class="course-listing-text"><strong>Achievements:</strong> {{#each achievement}}{{this}}, {{/each}}</p>
     </div>
 
     <div class="course-listing-buttons col-xs-6 nopadding">

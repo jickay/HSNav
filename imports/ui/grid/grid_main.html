@@ -1,0 +1,35 @@
+<template name="grid_main">
+    <!-- Container Left Side -->
+    <div class="container-grid text-center">
+
+        {{> grid_header}}
+
+        <!-- Course Grid -->
+        <div class="course-grid col-xs-12 nopadding">
+
+            <div class="course-grid-left col-xs-8">
+                {{#each gridSubjects}}
+                    {{> grid_row index=@index subject=this}}
+                {{/each}}
+            </div>
+
+            <div class="course-grid-right col-xs-4 col-wrap">
+                <div class="achievements-wrapper col-xs-6 col nopadding">
+                    <div class="achievements col-xs-12">
+                        <button class="achievement-btn {{#if diplomaOn}}diploma-on{{/if}} btn" id="Diploma-btn">Diploma</button>
+                        <button class="achievement-btn {{#if certOn}}certificate-on{{/if}} btn" id="Certificate-btn">Certificate</button>
+                    </div>
+                </div>
+                <div class="end-goal col-xs-6 col">
+                    University program
+                </div>
+            </div>
+        </div>
+
+        <div class="course-info col-xs-12 text-left">
+            <p id="course-name">Course: </p>
+            <p id="course-description">Description: </p>
+        </div>
+
+    </div>
+</template>

@@ -1,0 +1,29 @@
+<template name="post_secondary">
+    <div class="col-xs-12">
+        <form class="postsec-form" id="new-postsec-form">
+            <label required="required">School</label>
+            <select class="selectpicker" name="school">
+                <option selected>University of Calgary</option>
+            </select>
+            <label required="required">Program</label>
+            <input type="text" name="Program"  placeholder="Program..."/>
+            <label required="required">Degree</label>
+            <select class="selectpicker" name="degree">
+                <option selected>BSc</option>
+                <option>BA</option>
+                <option>BCC</option>
+                <option>BCMS</option>
+                <option>BFA</option>
+                <option>BMus</option>
+            </select>
+            <label required="required">Single Requirements - separate each by comma (eg. Math 30-1, ELA 30)</label>
+            <input type="text" name="requirements-single" placeholder="Single Requirements..."/>
+            <label required="required">Conditional Requirements (eg. 1 of following: Math 30-1, ELA 30)</label>
+            <input type="number" name="requirements-cond-min" placeholder="Min #..."/>
+            <input type="text" name="requirements-cond-courses" placeholder="Conditional Requirements..."/>
+
+            <input type="submit" value="Add" class="btn" />
+        </form>
+    </div>
+
+</template>
