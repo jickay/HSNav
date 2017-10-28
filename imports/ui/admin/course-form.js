@@ -12,17 +12,17 @@ Template.course_form.events({
     // Get value from form element
     const target = event.target;
     const subject = target.subject.value;
-    var number = parseInt(target.number.value);
+    let number = parseInt(target.number.value);
     const title = target.title.value;
     const description = target.description.value;
     // const achievement = target.achievement.value;
 
-    var achievements = [];
+    let achievements = [];
     if (target.diploma.checked) { achievements.push(target.diploma.value); }
     if (target.certificate.checked) { achievements.push(target.certificate.value); }
 
     // Set level based on course number
-    var level = 0;
+    let level = 0;
     if (number < 20) { level = 10; }
     else if (number < 30) { level = 20; }
     else if (number < 40) { level = 30; }

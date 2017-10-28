@@ -1,0 +1,9 @@
+<template name="post_sec_listing">
+    <div class="col-xs-6">
+        {{#each getPostSec}}
+            <p>School: {{school}}, Program: {{program}}, Degree: {{degree}}</p>
+            <p>Single Reqs: {{req_single}}</p>
+            <p>Conditional Reqs: {{req_cond}}</p>
+        {{/each}}
+    </div>
+</template>

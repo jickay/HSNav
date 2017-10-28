@@ -50,4 +50,4 @@ Template.admin.events({
     'click .postsec-tab'() {
         Session.set("tab", "postsec");
     }
-})
+});

@@ -12,11 +12,12 @@ if (Meteor.isServer) {
 
 Meteor.methods({
     // Post Secondary
-    'postsecondary.insert'(school, program, achievement, requirements) {
+    'postsecondary.insert'(school, program, achievement, req_single, req_cond) {
         check(school, String);
         check(program, String);
         check(achievement, String);
-        check(requirements, [String]);
+        check(req_single, [String]);
+        check(req_cond, [[String]]);
 
         if (!Meteor.userId()) {
             throw new Meteor.Error('not-authorized');
@@ -26,7 +27,8 @@ Meteor.methods({
             school,
             program,
             achievement,
-            requirements,
+            req_single,
+            req_cond,
             createdAt: new Date(),
             owner: Meteor.userId(),
         })

@@ -1,29 +1,35 @@
 <template name="post_secondary">
-    <div class="col-xs-12">
+    <div class="col-xs-6">
         <form class="postsec-form" id="new-postsec-form">
             <label required="required">School</label>
             <select class="selectpicker" name="school">
                 <option selected>University of Calgary</option>
             </select>
             <label required="required">Program</label>
-            <input type="text" name="Program"  placeholder="Program..."/>
+            <input type="text" name="program"  placeholder="Program..."/>
             <label required="required">Degree</label>
             <select class="selectpicker" name="degree">
-                <option selected>BSc</option>
-                <option>BA</option>
-                <option>BCC</option>
-                <option>BCMS</option>
-                <option>BFA</option>
-                <option>BMus</option>
+                <option value="BSc" selected>BSc</option>
+                <option value="BA">BA</option>
+                <option value="BCC">BCC</option>
+                <option value="BCMS">BCMS</option>
+                <option value="BFA">BFA</option>
+                <option value="BMus">BMus</option>
             </select>
             <label required="required">Single Requirements - separate each by comma (eg. Math 30-1, ELA 30)</label>
-            <input type="text" name="requirements-single" placeholder="Single Requirements..."/>
+            <input type="text" name="req_single" placeholder="Single Requirements..."/>
             <label required="required">Conditional Requirements (eg. 1 of following: Math 30-1, ELA 30)</label>
-            <input type="number" name="requirements-cond-min" placeholder="Min #..."/>
-            <input type="text" name="requirements-cond-courses" placeholder="Conditional Requirements..."/>
+            <div class="col-xs-12 nopadding">
+                {{#each condCount}}
+                    {{> req_cond}}
+                {{/each}}
+                <button class="btn" id="add_cond">Add Conditional Requirement</button>
+            </div>
 
             <input type="submit" value="Add" class="btn" />
         </form>
     </div>
+
+    {{> post_sec_listing}}
 
 </template>
